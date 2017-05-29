@@ -1,5 +1,6 @@
+cmake_minimum_required( VERSION 3.4 )
 
-set( SDL sdl-1.2.15 )
+set( SDL ${CMAKE_CURRENT_SOURCE_DIR}/sdl-1.2.15 )
 
 file(
 	GLOB SDL_SOURCES
@@ -7,31 +8,68 @@ file(
 	${SDL}/src/audio/*.c
 	${SDL}/src/audio/disk/*.c
 	${SDL}/src/audio/dummy/*.c
-	${SDL}/src/audio/windib/*.c
-	${SDL}/src/audio/windx5/*.c
 	${SDL}/src/cdrom/*.c
-	${SDL}/src/cdrom/win32/*.c
+	${SDL}/src/cdrom/dummy/*.c
 	${SDL}/src/cpuinfo/*.c
 	${SDL}/src/events/*.c
 	${SDL}/src/file/*.c
 	${SDL}/src/joystick/*.c
-	${SDL}/src/joystick/win32/*.c
-	${SDL}/src/loadso/win32/*.c
 	${SDL}/src/stdlib/*.c
 	${SDL}/src/thread/*.c
 	${SDL}/src/thread/generic/*.c
-	${SDL}/src/thread/win32/*.c
 	${SDL}/src/timer/*.c
-	${SDL}/src/timer/win32/*.c
 	${SDL}/src/video/*.c
 	${SDL}/src/video/dummy/*.c
+)
+
+file(
+	GLOB SDL_WIN32_SOURCES
+	${SDL}/src/audio/windib/*.c
+	${SDL}/src/audio/windx5/*.c
+	${SDL}/src/cdrom/win32/*.c
+	${SDL}/src/joystick/win32/*.c
+	${SDL}/src/loadso/win32/*.c
+	${SDL}/src/thread/win32/*.c
+	${SDL}/src/timer/win32/*.c
 	${SDL}/src/video/wincommon/*.c
 	${SDL}/src/video/windib/*.c
 	${SDL}/src/video/windx5/*.c
 )
 
-add_library( sdl ${SDL_SOURCES} )
+file(
+	GLOB SDL_MACOS_SOURCES
+	${SDL}/src/audio/macosx/*.c
+	${SDL}/src/cdrom/macosx/*.c
+	${SDL}/src/joystick/darwin/*.c
+	${SDL}/src/loadso/dlopen/*.c
+	${SDL}/src/loadso/macosx/*.c
+	${SDL}/src/thread/pthread/*.c
+	${SDL}/src/timer/unix/*.c
+	${SDL}/src/video/quartz/*.c
+)
+
+set( LIBSDL_SOURCES ${SDL_SOURCES} )
+
+if (WIN32)
+	set( LIBSDL_SOURCES ${LIBSDL_SOURCES} ${SDL_WIN32_SOURCES} )
+	set( LIBSDLMAIN_SOURCES ${SDL}/src/main/win32/SDL_win32_main.c )
+	message( AUTHOR_WARNING "+ Building for Windows.")
+elseif( UNIX AND APPLE )
+	set( LIBSDL_SOURCES ${LIBSDL_SOURCES} ${SDL_MACOS_SOURCES} )
+	set( LIBSDLMAIN_SOURCES ${SDL}/src/main/macosx/SDLMain.m )
+
+	## copy over a pre-created macOS config
+	file( STRINGS ${CMAKE_CURRENT_SOURCE_DIR}/SDL_config.h.macOS SDL_CONFIG_HEADER )
+	string(REPLACE ";" "\n" SDL_CONFIG_HEADER "${SDL_CONFIG_HEADER}")
+	file( WRITE ${SDL}/include/SDL_config.h "${SDL_CONFIG_HEADER}" )
+	message( AUTHOR_WARNING "+ Building for macOS.")
+else()
+	message( FATAL_ERROR "Unknown operating system-- aborting." )
+endif()
+
+
+add_library( sdl ${LIBSDL_SOURCES} )
 target_include_directories( sdl PUBLIC ${SDL}/include )
 
-add_library( sdlmain ${SDL}/src/main/win32/SDL_win32_main.c )
+add_library( sdlmain ${LIBSDLMAIN_SOURCES} )
 target_include_directories( sdlmain PUBLIC ${SDL}/include )
