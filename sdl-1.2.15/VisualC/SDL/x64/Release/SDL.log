@@ -1,0 +1,91 @@
+﻿  SDL_diskaudio.c
+  SDL_dummyaudio.c
+  SDL_audio.c
+  SDL_audiocvt.c
+  SDL_mixer.c
+  SDL_mixer_MMX_VC.c
+  SDL_wave.c
+  SDL_dibaudio.c
+  SDL_dx5audio.c
+..\..\src\audio\windx5\SDL_dx5audio.c(69): warning C4996: 'GetVersionExA': was declared deprecated
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\sysinfoapi.h(433): note: see declaration of 'GetVersionExA'
+  SDL_cdrom.c
+  SDL_syscdrom.c
+..\..\src\cdrom\win32\SDL_syscdrom.c(174): warning C4244: '=': conversion from 'DWORD_PTR' to 'int', possible loss of data
+..\..\src\cdrom\win32\SDL_syscdrom.c(342): warning C4244: '=': conversion from 'DWORD_PTR' to 'DWORD', possible loss of data
+  SDL_cpuinfo.c
+  SDL_active.c
+  SDL_events.c
+  SDL_expose.c
+  SDL_keyboard.c
+  SDL_mouse.c
+  SDL_quit.c
+  SDL_resize.c
+  SDL_rwops.c
+..\..\src\file\SDL_rwops.c(126): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
+..\..\src\file\SDL_rwops.c(151): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
+..\..\src\file\SDL_rwops.c(115): warning C4996: 'GetVersionExA': was declared deprecated
+  C:\Program Files (x86)\Windows Kits\8.1\Include\um\sysinfoapi.h(433): note: see declaration of 'GetVersionExA'
+..\..\src\file\SDL_rwops.c(340): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+..\..\src\file\SDL_rwops.c(350): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+..\..\src\file\SDL_rwops.c(392): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+..\..\src\file\SDL_rwops.c(412): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+..\..\src\file\SDL_rwops.c(417): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+  Generating Code...
+  Compiling...
+  SDL_joystick.c
+  SDL_mmjoystick.c
+  SDL_sysloadso.c
+  SDL.c
+  SDL_error.c
+  SDL_fatal.c
+  SDL_getenv.c
+  SDL_iconv.c
+  SDL_malloc.c
+  SDL_qsort.c
+  SDL_stdlib.c
+  SDL_string.c
+..\..\src\stdlib\SDL_string.c(1246): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  SDL_syscond.c
+  SDL_thread.c
+  SDL_sysmutex.c
+  SDL_syssem.c
+  SDL_systhread.c
+  SDL_timer.c
+  SDL_systimer.c
+  SDL_nullevents.c
+  Generating Code...
+  Compiling...
+  SDL_nullmouse.c
+  SDL_nullvideo.c
+  SDL_blit.c
+  SDL_blit_0.c
+  SDL_blit_1.c
+  SDL_blit_A.c
+  SDL_blit_N.c
+  SDL_bmp.c
+  SDL_cursor.c
+  SDL_gamma.c
+  SDL_pixels.c
+  SDL_RLEaccel.c
+  SDL_stretch.c
+  SDL_surface.c
+  SDL_video.c
+  SDL_yuv.c
+  SDL_yuv_sw.c
+  SDL_sysevents.c
+  SDL_sysmouse.c
+  SDL_syswm.c
+..\..\src\video\wincommon\SDL_syswm.c(223): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+  Compiling...
+  SDL_wingl.c
+  SDL_dibevents.c
+..\..\src\video\windib\SDL_dibevents.c(598): warning C4244: 'function': conversion from 'WPARAM' to 'int', possible loss of data
+..\..\src\video\windib\SDL_dibevents.c(615): warning C4244: '=': conversion from 'WPARAM' to 'Uint16', possible loss of data
+  SDL_dibvideo.c
+  SDL_dx5events.c
+  SDL_dx5video.c
+  SDL_dx5yuv.c
+  Generating Code...
+  SDL.vcxproj -> C:\Users\kiki\Dropbox\skeletal_studios\dev\gbc\atmd\extern\sdl-1.2.15\VisualC\x64\Release\SDL.lib
