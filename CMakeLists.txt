@@ -45,7 +45,7 @@ file(
 	${SDL}/src/loadso/macosx/*.c
 	${SDL}/src/thread/pthread/*.c
 	${SDL}/src/timer/unix/*.c
-	${SDL}/src/video/quartz/*.c
+	${SDL}/src/video/quartz/*.m
 )
 
 set( LIBSDL_SOURCES ${SDL_SOURCES} )
@@ -59,6 +59,9 @@ elseif( UNIX AND APPLE )
 	set( LIBSDLMAIN_SOURCES ${SDL}/src/main/macosx/SDLMain.m )
 
 	## copy over a pre-created macOS config
+	set( CFLAGS "-Wall -Wextra -O2 -g -fomit-frame-pointer -fPIC" )
+	set( CXXFLAGS "${CFLAGS} -fno-exceptions -fno-rtti" )
+
 	file( STRINGS ${CMAKE_CURRENT_SOURCE_DIR}/SDL_config.h.macOS SDL_CONFIG_HEADER )
 	string(REPLACE ";" "\n" SDL_CONFIG_HEADER "${SDL_CONFIG_HEADER}")
 	file( WRITE ${SDL}/include/SDL_config.h "${SDL_CONFIG_HEADER}" )
