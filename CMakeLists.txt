@@ -43,7 +43,7 @@ file(
 	${SDL}/src/joystick/darwin/*.c
 	${SDL}/src/loadso/dlopen/*.c
 	${SDL}/src/loadso/macosx/*.c
-	${SDL}/src/thread/pthread/*.c
+	# ${SDL}/src/thread/pthread/*.c
 	${SDL}/src/timer/unix/*.c
 	${SDL}/src/video/quartz/*.m
 )
